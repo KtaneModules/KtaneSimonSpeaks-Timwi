@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 305e4f32e213b314abba69858d6463d0
+timeCreated: 1546137925
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: SudegnakNo3
+  fontNames:
+  - SudegnakNo3
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
