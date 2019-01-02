@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using KModkit;
 using SimonSpeaks;
@@ -231,5 +232,39 @@ public class SimonSpeaksModule : MonoBehaviour
             BubbleBodies[i].material.color = (i == ix ? _outlineColors : _bodyColors)[_colors[i]];
             BubbleOutlines[i].material.color = (i == ix ? _bodyColors : _outlineColors)[_colors[i]];
         }
+    }
+
+#pragma warning disable 414
+    private readonly string TwitchHelpMessage = @"!{0} TL, TM [top-left, top-middle, etc.]";
+#pragma warning restore 414
+
+    KMSelectable[] ProcessTwitchCommand(string command)
+    {
+        var split = command.Trim().ToLowerInvariant().Split(new[] { ' ', ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+        if (split.Length == 0)
+            return null;
+        var skip = split[0].Equals("press", StringComparison.InvariantCulture | StringComparison.CurrentCulture) ? 1 : 0;
+        if (!split.Skip(skip).Any())
+            return null;
+
+        var btns = new List<KMSelectable>();
+        foreach (var cmd in split.Skip(skip))
+            switch (cmd.Replace("center", "middle").Replace("centre", "middle"))
+            {
+                case "tl": case "lt": case "topleft": case "lefttop": btns.Add(Bubbles[0]); break;
+                case "tm": case "tc": case "mt": case "ct": case "topmiddle": case "middletop": btns.Add(Bubbles[1]); break;
+                case "tr": case "rt": case "topright": case "righttop": btns.Add(Bubbles[2]); break;
+
+                case "ml": case "cl": case "lm": case "lc": case "middleleft": case "leftmiddle": btns.Add(Bubbles[3]); break;
+                case "mm": case "cm": case "mc": case "cc": case "middle": case "middlemiddle": btns.Add(Bubbles[4]); break;
+                case "mr": case "cr": case "rm": case "rc": case "middleright": case "rightmiddle": btns.Add(Bubbles[5]); break;
+
+                case "bl": case "lb": case "bottomleft": case "leftbottom": btns.Add(Bubbles[6]); break;
+                case "bm": case "bc": case "mb": case "cb": case "bottommiddle": case "middlebottom": btns.Add(Bubbles[7]); break;
+                case "br": case "rb": case "bottomright": case "rightbottom": btns.Add(Bubbles[8]); break;
+
+                default: return null;
+            }
+        return btns.ToArray();
     }
 }
