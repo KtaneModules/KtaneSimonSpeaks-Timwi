@@ -33,8 +33,7 @@ public class SimonSpeaksModule : MonoBehaviour
         .Split(',').Select(str => Enumerable.Range(0, 3).Select(i => Convert.ToInt32(str.Substring(2 * i, 2), 16) / 255f).ToArray()).Select(arr => new Color(arr[0], arr[1], arr[2])).ToArray();
     public static readonly Color[] _outlineColors = @"AEAEAE,ABBDFF,2F7C30,318894,9F2A2A,7C40B2,6D6B30,828282,727272"
         .Split(',').Select(str => Enumerable.Range(0, 3).Select(i => Convert.ToInt32(str.Substring(2 * i, 2), 16) / 255f).ToArray()).Select(arr => new Color(arr[0], arr[1], arr[2])).ToArray();
-    public static readonly Color[] _textColors = @"FFFFFF,FFFFFF,000000,000000,000000,000000,000000,000000,000000"
-        .Split(',').Select(str => Enumerable.Range(0, 3).Select(i => Convert.ToInt32(str.Substring(2 * i, 2), 16) / 255f).ToArray()).Select(arr => new Color(arr[0], arr[1], arr[2])).ToArray();
+    public static readonly bool[] _textIsWhite = new[] { true, true, false, false, false, false, false, false, false };
 
     private static readonly string[][] _wordsTable = new[] {
         new[] { "black", "sort", "zwart", "nigra", "musta", "noir", "schwarz", "fekete", "nero" },
@@ -86,7 +85,7 @@ public class SimonSpeaksModule : MonoBehaviour
         {
             BubbleBodies[i].material.color = _bodyColors[_colors[i]];
             BubbleOutlines[i].material.color = _outlineColors[_colors[i]];
-            BubbleTexts[i].color = _textColors[_colors[i]];
+            BubbleTexts[i].color = _textIsWhite[_colors[i]] ? Color.white : Color.black;
             BubbleTexts[i].text = _wordsTable[_words[i]][_languages[i]];
             BubbleTexts[i].transform.localPosition = _bubbleTextPositions[_shapes[i]];
             BubbleTexts[i].transform.localRotation = _bubbleTextRotations[_shapes[i]];
@@ -181,6 +180,7 @@ public class SimonSpeaksModule : MonoBehaviour
             {
                 BubbleBodies[i].material.color = (i % 2 == mIx % 2 ? _outlineColors : _bodyColors)[_colors[i]];
                 BubbleOutlines[i].material.color = (i % 2 == mIx % 2 ? _bodyColors : _outlineColors)[_colors[i]];
+                BubbleTexts[i].color = (_textIsWhite[_colors[i]] ^ (i % 2 == mIx % 2)) ? Color.white : Color.black;
             }
             yield return new WaitForSeconds(.15f);
         }
@@ -231,6 +231,7 @@ public class SimonSpeaksModule : MonoBehaviour
         {
             BubbleBodies[i].material.color = (i == ix ? _outlineColors : _bodyColors)[_colors[i]];
             BubbleOutlines[i].material.color = (i == ix ? _bodyColors : _outlineColors)[_colors[i]];
+            BubbleTexts[i].color = (_textIsWhite[_colors[i]] ^ (i == ix)) ? Color.white : Color.black;
         }
     }
 
