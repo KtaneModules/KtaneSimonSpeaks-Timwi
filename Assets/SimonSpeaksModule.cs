@@ -123,7 +123,7 @@ public class SimonSpeaksModule : MonoBehaviour
     {
         return delegate
         {
-            Audio.PlaySoundAtTransform("Bell" + (_sounds[ix] + 1), Bubbles[ix].transform);
+            Audio.PlaySoundAtTransform("" + (_sounds[ix] + 1), Bubbles[ix].transform);
             Bubbles[ix].AddInteractionPunch(.5f);
             if (_isSolved)
                 return false;
@@ -175,7 +175,7 @@ public class SimonSpeaksModule : MonoBehaviour
         var melody = new[] { 9, 8, 6, 5, 7, 6, 4, 2, 3 };
         for (int mIx = 0; mIx < melody.Length; mIx++)
         {
-            Audio.PlaySoundAtTransform("Bell" + melody[mIx], Bubbles[melody[mIx] - 1].transform);
+            Audio.PlaySoundAtTransform("" + melody[mIx], Bubbles[melody[mIx] - 1].transform);
             for (int i = 0; i < 9; i++)
             {
                 BubbleBodies[i].material.color = (i % 2 == mIx % 2 ? _outlineColors : _bodyColors)[_colors[i]];
@@ -215,7 +215,7 @@ public class SimonSpeaksModule : MonoBehaviour
             for (int i = 0; i <= _stage; i++)
             {
                 if (_makeSounds)
-                    Audio.PlaySoundAtTransform("Bell" + (_sounds[_sequence[i]] + 1), Bubbles[_sequence[i]].transform);
+                    Audio.PlaySoundAtTransform("" + (_sounds[_sequence[i]] + 1), Bubbles[_sequence[i]].transform);
                 showFlashed(_sequence[i]);
                 yield return new WaitForSeconds(.4f);
                 showFlashed(null);
