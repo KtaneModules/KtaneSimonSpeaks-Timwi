@@ -41,7 +41,7 @@ public class SimonSpeaksModule : MonoBehaviour
         new[] { "green", "grøn", "groen", "verda", "vihreä", "vert", "grün", "zöld", "verde" },
         new[] { "cyan", "turkis", "turkoois", "turkisa", "turkoosi", "turquoise", "türkis", "türkiz", "turchese" },
         new[] { "red", "rød", "rood", "ruĝa", "punainen", "rouge", "rot", "piros", "rosso" },
-        new[] { "purple", "lilla", "purper", "purpura", "purppura", "pourpre", "lila", "bíbor", "porpora" },
+        new[] { "purple", "lilla", "paars", "purpura", "purppura", "pourpre", "lila", "bíbor", "porpora" },
         new[] { "yellow", "gul", "geel", "flava", "keltainen", "jaune", "gelb", "sárga", "giallo" },
         new[] { "white", "hvid", "wit", "blanka", "valkoinen", "blanc", "weiß", "fehér", "bianco" },
         new[] { "gray", "grå", "grijs", "griza", "harmaa", "gris", "grau", "szürke", "grigio" }
