@@ -268,4 +268,13 @@ public class SimonSpeaksModule : MonoBehaviour
             }
         return btns.ToArray();
     }
+
+    IEnumerator TwitchHandleForcedSolve()
+    {
+        while (!_isSolved)
+        {
+            Bubbles[_solution[_subprogress]].OnInteract();
+            yield return new WaitForSeconds(.1f);
+        }
+    }
 }
